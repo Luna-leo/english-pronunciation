@@ -6,4 +6,4 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 # Design system
 
-All UI work must follow `docs/design.md` (ENG-APPS design tokens). Source of truth for tokens: `app/globals.css` `:root`. Hard rules: no rounded corners (`rounded-*` is disabled in the Tailwind theme; do not use `rounded-full` either), no gradients, no purple, no external web fonts, no `#000` text (use `text-ink`), vermilion only as thin lines/dots, support `prefers-reduced-motion`.
+All UI work must follow `docs/design.md` (ENG-APPS design tokens). Source of truth for tokens: `app/globals.css` `:root`. Hard rules: no rounded corners (`rounded-*` is disabled in the Tailwind theme; do not use `rounded-full` either), no gradients, no purple, no external web fonts, no `#000` text (use `text-ink`), vermilion only as thin lines/dots, support `prefers-reduced-motion`. App shell: every page renders inside the drawing-sheet shell (docs/design.md §6) — pages provide their own `<main className="flex-1 ...">` and must not use `min-h-screen`/`h-screen`.
