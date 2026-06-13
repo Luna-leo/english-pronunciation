@@ -23,16 +23,19 @@ export default function RootLayout({
     <html lang="ja" className="antialiased">
       <body className="bg-grid-paper">
         <div className="sheet">
-          <header className="sheet-head">
-            <div>
-              <p className="wordmark">
-                <Link href="/">ENGLISH&nbsp;PRONUNCIATION</Link>
-              </p>
-              <p className="subtitle">英語発音練習</p>
-            </div>
-            <div className="ruler" aria-hidden="true" />
-          </header>
-          <div className="sheet-body">{children}</div>
+          <div className="sheet-body">
+            {/* ヘッダーはスクロール領域の内側 = スクロールで流れる。図枠・トンボ(.sheet)は固定のまま */}
+            <header className="sheet-head">
+              <div>
+                <p className="wordmark">
+                  <Link href="/">ENGLISH&nbsp;PRONUNCIATION</Link>
+                </p>
+                <p className="subtitle">英語発音練習</p>
+              </div>
+              <div className="ruler" aria-hidden="true" />
+            </header>
+            {children}
+          </div>
         </div>
       </body>
     </html>

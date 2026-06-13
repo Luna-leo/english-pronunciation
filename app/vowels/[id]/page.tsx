@@ -39,6 +39,7 @@ export default async function VowelPage({
           { label: "VOWELS", href: "/vowels" },
           { label: v.id.toUpperCase() },
         ]}
+        title={`/${v.symbol}/ ${v.keyword.word}`}
       />
       <PhonemeDetail phoneme={v} />
       <FootNav

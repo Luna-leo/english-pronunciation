@@ -45,6 +45,7 @@ export default async function ConnectedTopicPage({
           { label: "CONNECTED", href: "/connected" },
           { label: t.titleEn },
         ]}
+        title={t.title}
       />
       <PageHeader code={`SEC 05 / ${t.titleEn}`} title={t.title} lede={t.summary} />
       <BlockRenderer blocks={t.blocks} />

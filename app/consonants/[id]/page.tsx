@@ -39,6 +39,7 @@ export default async function ConsonantPage({
           { label: "CONSONANTS", href: "/consonants" },
           { label: c.id.toUpperCase() },
         ]}
+        title={`/${c.symbol}/ ${c.keyword.word}`}
       />
       <PhonemeDetail phoneme={c} />
       <FootNav
