@@ -195,23 +195,6 @@ body {
       min-height: 100vh;
       min-height: 100dvh;
       align-items: stretch;
-      /* iOS Safari: 半透明ステータスバーの下に中身がスクロールして透けるのを防ぐ。
-         viewport-fit:cover で得たセーフエリア分だけ内容を下げ、上下端の見切れも防ぐ。 */
-      padding-top: calc(clamp(10px, 2.2vh, 26px) + env(safe-area-inset-top));
-      padding-bottom: calc(clamp(10px, 2.2vh, 26px) + env(safe-area-inset-bottom));
-    }
-    /* 上端のセーフエリア帯を固定の無地用紙色で物理的に塞ぐ（スクロールしても残る）。
-       sticky Crumbs(z-10) や本文より前面に重ねて、ステータスバー裏の透けを消す。 */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: env(safe-area-inset-top);
-      background-color: var(--paper);
-      z-index: 50;
-      pointer-events: none;
     }
     .sheet {
       height: auto;

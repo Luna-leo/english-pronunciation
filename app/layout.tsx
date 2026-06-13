@@ -8,11 +8,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  // themeColor = --paper（リテラル hex は :root の --paper と同値に保つ）。
-  // viewportFit: cover で env(safe-area-inset-*) を有効化し、iOS Safari の
-  // 半透明ステータスバー帯を globals.css の固定パネルで無地に塞ぐ（中身の透け防止）。
+  // = --paper（リテラル hex は :root の --paper と同値に保つ）。
+  // iOS 26 Safari は theme-color を無視する（半透明グラスのステータスバーは Web から
+  // 不透明化できない＝既知の OS 仕様）。これは主に Android Chrome の上端バー用。
   themeColor: "#f6f4ee",
-  viewportFit: "cover",
 };
 
 export default function RootLayout({
