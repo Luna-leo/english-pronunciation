@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
-import { VoiceBadge } from "@/components/speech/VoiceBadge";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -31,10 +30,7 @@ export default function RootLayout({
               </p>
               <p className="subtitle">英語発音練習</p>
             </div>
-            <div className="mt-2 flex items-end gap-3">
-              <div className="ruler mt-0 flex-1" aria-hidden="true" />
-              <VoiceBadge />
-            </div>
+            <div className="ruler" aria-hidden="true" />
           </header>
           <div className="sheet-body">{children}</div>
         </div>
