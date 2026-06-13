@@ -25,16 +25,16 @@ export default function RootLayout({
       <body className="bg-grid-paper">
         <div className="sheet">
           <header className="sheet-head">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="wordmark">
-                  <Link href="/">ENGLISH&nbsp;PRONUNCIATION</Link>
-                </p>
-                <p className="subtitle">英語発音練習</p>
-              </div>
+            <div>
+              <p className="wordmark">
+                <Link href="/">ENGLISH&nbsp;PRONUNCIATION</Link>
+              </p>
+              <p className="subtitle">英語発音練習</p>
+            </div>
+            <div className="mt-2 flex items-end gap-3">
+              <div className="ruler mt-0 flex-1" aria-hidden="true" />
               <VoiceBadge />
             </div>
-            <div className="ruler" aria-hidden="true" />
           </header>
           <div className="sheet-body">{children}</div>
         </div>
