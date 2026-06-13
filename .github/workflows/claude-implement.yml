@@ -1,0 +1,64 @@
+name: Claude Implement
+
+# 実装フェーズ: @claude-implement で起動。承認ゲート(plan-approved ラベル)を通過した
+# Issue/PR でのみ実行し、合意された計画に従って実装・PR 作成を行う。
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened, assigned]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  claude-implement:
+    # トリガー: @claude-implement フレーズ + write 権限保持者のみ +
+    # 承認ゲート: plan-approved ラベルが対象 Issue/PR に付いていること。
+    # ラベルが無い場合はジョブごとスキップ(Actions UI に "Skipped" 表示)。
+    # issue_comment イベントでは PR も github.event.issue.labels で参照できる。
+    if: |
+      (github.event_name == 'issue_comment' &&
+        contains(github.event.comment.body, '@claude-implement') &&
+        contains(github.event.issue.labels.*.name, 'plan-approved') &&
+        (github.event.comment.author_association == 'OWNER' ||
+         github.event.comment.author_association == 'MEMBER' ||
+         github.event.comment.author_association == 'COLLABORATOR')) ||
+      (github.event_name == 'pull_request_review_comment' &&
+        contains(github.event.comment.body, '@claude-implement') &&
+        contains(github.event.pull_request.labels.*.name, 'plan-approved') &&
+        (github.event.comment.author_association == 'OWNER' ||
+         github.event.comment.author_association == 'MEMBER' ||
+         github.event.comment.author_association == 'COLLABORATOR')) ||
+      (github.event_name == 'pull_request_review' &&
+        contains(github.event.review.body, '@claude-implement') &&
+        contains(github.event.pull_request.labels.*.name, 'plan-approved') &&
+        (github.event.review.author_association == 'OWNER' ||
+         github.event.review.author_association == 'MEMBER' ||
+         github.event.review.author_association == 'COLLABORATOR')) ||
+      (github.event_name == 'issues' &&
+        (contains(github.event.issue.body, '@claude-implement') ||
+         contains(github.event.issue.title, '@claude-implement')) &&
+        contains(github.event.issue.labels.*.name, 'plan-approved') &&
+        (github.event.issue.author_association == 'OWNER' ||
+         github.event.issue.author_association == 'MEMBER' ||
+         github.event.issue.author_association == 'COLLABORATOR'))
+    runs-on: ubuntu-latest
+    # Environment 方式で更に厳格にしたい場合は次行のコメントを外す:
+    # GitHub Settings > Environments で "claude-implement-approval" を作成し
+    # Required reviewers を登録すると、ジョブ開始前に手動承認が必須になる。
+    # environment: claude-implement-approval
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          trigger_phrase: "@claude-implement"

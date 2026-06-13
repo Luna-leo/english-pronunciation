@@ -12,11 +12,19 @@ on:
 
 jobs:
   claude:
+    # @claude-plan / @claude-implement は専用ワークフローで処理するため、ここでは除外する
+    # (両フレーズとも文字列 "@claude" を含むため、明示的に除外しないと二重起動する)。
     if: |
-      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
-      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude') &&
+        !contains(github.event.comment.body, '@claude-plan') && !contains(github.event.comment.body, '@claude-implement')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude') &&
+        !contains(github.event.comment.body, '@claude-plan') && !contains(github.event.comment.body, '@claude-implement')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude') &&
+        !contains(github.event.review.body, '@claude-plan') && !contains(github.event.review.body, '@claude-implement')) ||
+      (github.event_name == 'issues' &&
+        (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')) &&
+        !contains(github.event.issue.body, '@claude-plan') && !contains(github.event.issue.title, '@claude-plan') &&
+        !contains(github.event.issue.body, '@claude-implement') && !contains(github.event.issue.title, '@claude-implement'))
     runs-on: ubuntu-latest
     permissions:
       contents: write
