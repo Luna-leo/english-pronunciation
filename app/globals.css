@@ -188,23 +188,9 @@ body {
     scrollbar-color: var(--ink-faint) transparent;
   }
 
-  /* 縦積みフォールバック: 固定高を解除（height と max-height の両方 — 片方だけだと内容が枠外へあふれる既知バグ） */
-  @media (max-width: 1020px) {
-    body {
-      height: auto;
-      min-height: 100vh;
-      min-height: 100dvh;
-      align-items: stretch;
-    }
-    .sheet {
-      height: auto;
-      max-height: none;
-      overflow: visible;
-    }
-    .sheet-body {
-      overflow-y: visible; /* 内部スクロール解除 → ページ全体スクロール */
-    }
-  }
+  /* 全幅で「枠固定＋内部スクロール」に統一（PC/タブレット/モバイル同一挙動）。
+     旧 @media(max-width:1020px) の固定解除フォールバックは撤去。
+     body に overflow-x:clip/hidden は付けないこと（Safari の sticky 再描画残像対策 — docs/design.md §6）。 */
 
   /* スマホ: ワードマークが1行に収まるよう縮小（等幅+字間で横幅が画面を超えるため） */
   @media (max-width: 640px) {
