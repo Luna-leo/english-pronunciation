@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { QuizApp } from "@/components/quiz/QuizApp";
-import { SpeechSupportNote } from "@/components/speech/SpeechSupportNote";
 import { Crumbs } from "@/components/ui/Crumbs";
 import { FootNav } from "@/components/ui/FootNav";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -20,7 +19,6 @@ export default function QuizPage() {
         title="クイズ"
         lede="ミニマルペアの聞き分け・発音記号の読み取り・強勢位置。1セッション10問。問題は音素データから自動生成される。"
       />
-      <SpeechSupportNote />
       <QuizApp />
       <FootNav items={[{ label: "HOME", href: "/" }]} />
     </main>

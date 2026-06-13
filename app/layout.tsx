@@ -24,10 +24,12 @@ export default function RootLayout({
       <body className="bg-grid-paper">
         <div className="sheet">
           <header className="sheet-head">
-            <p className="wordmark">
-              <Link href="/">ENGLISH&nbsp;PRONUNCIATION</Link>
-            </p>
-            <p className="subtitle">英語発音練習</p>
+            <div>
+              <p className="wordmark">
+                <Link href="/">ENGLISH&nbsp;PRONUNCIATION</Link>
+              </p>
+              <p className="subtitle">英語発音練習</p>
+            </div>
             <div className="ruler" aria-hidden="true" />
           </header>
           <div className="sheet-body">{children}</div>

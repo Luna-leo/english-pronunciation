@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { LookupForm } from "@/components/lookup/LookupForm";
-import { SpeechSupportNote } from "@/components/speech/SpeechSupportNote";
 import { Crumbs } from "@/components/ui/Crumbs";
 import { FootNav } from "@/components/ui/FootNav";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -20,7 +19,6 @@ export default function LookupPage() {
         title="発音記号検索"
         lede="英単語を入力すると、GA(アメリカ英語)の発音記号を表示する。約12万語収録。音声でも確認できる。"
       />
-      <SpeechSupportNote />
       <LookupForm />
       <p className="max-w-3xl text-xs leading-relaxed text-ink-faint">
         検索結果の表記は辞書データ(ipa-dict)の流儀に従うため、本サイトの解説ページと細部が異なることがある(r
