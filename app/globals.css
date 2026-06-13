@@ -24,6 +24,9 @@
   --jp: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium",
     Meiryo, sans-serif;
   --mono: "Cascadia Mono", Consolas, "Courier New", monospace;
+  /* IPA発音記号用 — Cascadia Mono に無いグリフ(ɚ ɝ ɾ ʔ 等)は Segoe UI が字単位で補う。
+     IPA には letter-spacing をかけない(結合文字 ː 等の位置が崩れる) */
+  --ipa: "Cascadia Mono", "Segoe UI", Consolas, sans-serif;
 
   /* §2.3 サイズ（vh基準のclamp — 原典 index.html 準拠） */
   --pad: clamp(10px, 1.6vh, 22px);
@@ -47,6 +50,7 @@
   --font-sans: var(--jp); /* preflight 既定フォントも JP スタックに */
   --font-jp: var(--jp);
   --font-mono: var(--mono);
+  --font-ipa: var(--ipa);
 
   --radius-*: initial; /* 禁則: 角丸禁止 — rounded-sm/md/lg... を無効化 */
 }

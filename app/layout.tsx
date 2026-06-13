@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="antialiased">
+    <html lang="ja" className="antialiased">
       <body className="bg-grid-paper">
         <div className="sheet">
           <header className="sheet-head">
