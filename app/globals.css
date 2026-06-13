@@ -195,7 +195,6 @@ body {
       min-height: 100vh;
       min-height: 100dvh;
       align-items: stretch;
-      overflow-x: clip; /* 横スクロール（指で左右にずれる）を防ぐ保険。clip は hidden と違いスクロールコンテナを作らず sticky Crumbs を壊さない */
     }
     .sheet {
       height: auto;

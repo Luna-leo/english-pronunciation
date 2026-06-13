@@ -117,8 +117,8 @@ body（bg-grid-paper: 方眼・100dvh・flex中央・padding clamp(10px,2.2vh,26
 - `@media (max-width:1020px)`: 固定を解除し、枠ごと伸びてページ全体がスクロール
 - **既知バグ（要注意）**: 固定解除時は `height` と `max-height` の**両方**を解除する（`height:auto; max-height:none; overflow:visible`）。`max-height` の解除を忘れると、図枠が画面高で閉じ、収まりきらないコンテンツが枠の外へあふれる（ポータルで過去に発生した不具合）
 - `.sheet-body` の `min-height:0` を消すと内部スクロールが効かなくなる（flexの定石）
-- 固定解除時の `body` には `overflow-x: clip` を付ける（等幅ワードマーク等の横はみ出しで指スクロール時に左右へずれるのを防ぐ保険）。`hidden` ではなく `clip` — `hidden` は `body` をスクロールコンテナ化して sticky な `Crumbs` を壊すため
-- スマホは全体スクロールのため `Crumbs` がビューポート上端（＝画面上端）に貼り付く。iOS Safari は不透明な `theme-color` が無いとノッチ／ステータスバー帯が透けて中身が見えるので、`app/layout.tsx` の `viewport.themeColor` と `html { background-color }` を `--paper`(`#f6f4ee`) にして帯を無地用紙色で塞ぐ（オーバースクロール時の方眼透けも防ぐ）。リテラルの hex は `:root` の `--paper` と同値に保つ。`viewport-fit:cover` は使わない（既定でセーフエリア内に収まるため不要）
+- **Safari の sticky 再描画バグ（要注意）**: 固定解除時の `body` に `overflow-x: clip`/`hidden` を**付けない**こと。`body`（sticky な `Crumbs` の祖先）に `overflow-x` を付けると、Safari ではスクロールで通り過ぎたコンテンツが画面最上部（ステータスバー帯〜パンくず上部）に残像として焼き付く（Chrome では出ない／Safari 限定）。横はみ出し対策は `overflow` ではなくワードマーク縮小（下記）で行う
+- スマホは全体スクロールのため `Crumbs` がビューポート上端（＝画面上端）に貼り付く。`app/layout.tsx` の `viewport.themeColor` と `html { background-color }` を `--paper`(`#f6f4ee`) にして、ブラウザ上端バー／オーバースクロール時に見える地を用紙色に揃える（化粧。リテラルの hex は `:root` の `--paper` と同値に保つ）。`viewport-fit:cover` は使わない（既定でセーフエリア内に収まるため不要）
 - **ワードマークの横はみ出し（要注意）**: `.wordmark` は等幅 `--h1`(≥26px)+字間.14em のため、`@media (max-width:640px)` で `font-size: clamp(14px,5.2vw,26px)` / `letter-spacing:.10em` に縮小して1行に収める（左右余白は保持・全幅化はしない）。`ENGLISH&nbsp;PRONUNCIATION` の `&nbsp;` で折り返さない前提なので、縮小を外すとスマホで枠外へあふれる
 
 ### 装飾の実装値（原典 index.html 準拠）
