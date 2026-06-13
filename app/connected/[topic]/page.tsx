@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { BlockRenderer } from "@/components/content/BlockRenderer";
-import { SpeechSupportNote } from "@/components/speech/SpeechSupportNote";
 import { Crumbs } from "@/components/ui/Crumbs";
 import { FootNav } from "@/components/ui/FootNav";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -48,7 +47,6 @@ export default async function ConnectedTopicPage({
         ]}
       />
       <PageHeader code={`SEC 05 / ${t.titleEn}`} title={t.title} lede={t.summary} />
-      <SpeechSupportNote />
       <BlockRenderer blocks={t.blocks} />
       <FootNav
         items={[

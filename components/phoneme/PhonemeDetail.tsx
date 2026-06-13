@@ -4,7 +4,6 @@ import { VowelChart } from "@/components/diagrams/VowelChart";
 import { ExampleWordList } from "@/components/phoneme/ExampleWordList";
 import { MinimalPairTable } from "@/components/phoneme/MinimalPairTable";
 import { SpeakButton } from "@/components/speech/SpeakButton";
-import { SpeechSupportNote } from "@/components/speech/SpeechSupportNote";
 import { IPA } from "@/components/ui/IPA";
 import type { Manner, Phoneme, Vowel } from "@/lib/types";
 
@@ -60,8 +59,6 @@ export function PhonemeDetail({ phoneme: p }: { phoneme: Phoneme }) {
           </p>
         </div>
       </div>
-
-      <SpeechSupportNote />
 
       <section className="space-y-3">
         <SectionHeading>01 — 調音(口の構え)</SectionHeading>
