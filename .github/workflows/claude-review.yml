@@ -2,7 +2,8 @@ name: Claude Code Review
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    # reopened も対象にして、close→reopen で再レビューできるようにする
+    types: [opened, synchronize, reopened]
 
 # 連続 push 時に古いレビュー実行を打ち切り、サブスク消費を節約
 concurrency:
