@@ -53,4 +53,6 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           trigger_phrase: "@claude-plan"
           # 計画は推論力重視で Opus(4.8)。--permission-mode plan で read-only。
-          claude_args: "--permission-mode plan --model claude-opus-4-8"
+          # Anthropic 側の過負荷(overloaded)時は Sonnet(4.6)へ自動フォールバック。
+          # ※使用枠超過などのレート制限/クォータ系では発動しない点に注意。
+          claude_args: "--permission-mode plan --model claude-opus-4-8 --fallback-model claude-sonnet-4-6"
