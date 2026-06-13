@@ -190,6 +190,7 @@ body {
       min-height: 100vh;
       min-height: 100dvh;
       align-items: stretch;
+      overflow-x: clip; /* 横スクロール（指で左右にずれる）を防ぐ保険。clip は hidden と違いスクロールコンテナを作らず sticky Crumbs を壊さない */
     }
     .sheet {
       height: auto;
@@ -198,6 +199,14 @@ body {
     }
     .sheet-body {
       overflow-y: visible; /* 内部スクロール解除 → ページ全体スクロール */
+    }
+  }
+
+  /* スマホ: ワードマークが1行に収まるよう縮小（等幅+字間で横幅が画面を超えるため） */
+  @media (max-width: 640px) {
+    .wordmark {
+      font-size: clamp(14px, 5.2vw, 26px); /* 画面幅に追従。640px地点で--h1の下限26pxに一致 */
+      letter-spacing: 0.1em; /* 銘板感は残しつつ .14em→.10em で詰める */
     }
   }
 }

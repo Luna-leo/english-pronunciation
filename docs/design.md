@@ -117,6 +117,8 @@ body（bg-grid-paper: 方眼・100dvh・flex中央・padding clamp(10px,2.2vh,26
 - `@media (max-width:1020px)`: 固定を解除し、枠ごと伸びてページ全体がスクロール
 - **既知バグ（要注意）**: 固定解除時は `height` と `max-height` の**両方**を解除する（`height:auto; max-height:none; overflow:visible`）。`max-height` の解除を忘れると、図枠が画面高で閉じ、収まりきらないコンテンツが枠の外へあふれる（ポータルで過去に発生した不具合）
 - `.sheet-body` の `min-height:0` を消すと内部スクロールが効かなくなる（flexの定石）
+- 固定解除時の `body` には `overflow-x: clip` を付ける（等幅ワードマーク等の横はみ出しで指スクロール時に左右へずれるのを防ぐ保険）。`hidden` ではなく `clip` — `hidden` は `body` をスクロールコンテナ化して sticky な `Crumbs` を壊すため
+- **ワードマークの横はみ出し（要注意）**: `.wordmark` は等幅 `--h1`(≥26px)+字間.14em のため、`@media (max-width:640px)` で `font-size: clamp(14px,5.2vw,26px)` / `letter-spacing:.10em` に縮小して1行に収める（左右余白は保持・全幅化はしない）。`ENGLISH&nbsp;PRONUNCIATION` の `&nbsp;` で折り返さない前提なので、縮小を外すとスマホで枠外へあふれる
 
 ### 装飾の実装値（原典 index.html 準拠）
 
