@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { VowelChart } from "@/components/diagrams/VowelChart";
 import { Crumbs } from "@/components/ui/Crumbs";
+import { FootNav } from "@/components/ui/FootNav";
 import { IPA } from "@/components/ui/IPA";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { VOWELS } from "@/lib/data/vowels";
@@ -21,7 +22,7 @@ const GROUPS: readonly { key: Vowel["group"]; label: string }[] = [
 
 export default function VowelsPage() {
   return (
-    <main className="flex flex-1 flex-col gap-6 py-4">
+    <main className="flex flex-1 flex-col gap-6 pb-4 pt-2">
       <Crumbs items={[{ label: "HOME", href: "/" }, { label: "VOWELS" }]} />
       <PageHeader
         code="SEC 02 / VOWELS"
@@ -68,6 +69,7 @@ export default function VowelsPage() {
           </div>
         ))}
       </section>
+      <FootNav items={[{ label: "HOME", href: "/" }]} />
     </main>
   );
 }

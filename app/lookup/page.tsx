@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { LookupForm } from "@/components/lookup/LookupForm";
 import { SpeechSupportNote } from "@/components/speech/SpeechSupportNote";
 import { Crumbs } from "@/components/ui/Crumbs";
+import { FootNav } from "@/components/ui/FootNav";
 import { PageHeader } from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function LookupPage() {
   return (
-    <main className="flex flex-1 flex-col gap-6 py-4">
+    <main className="flex flex-1 flex-col gap-6 pb-4 pt-2">
       <Crumbs items={[{ label: "HOME", href: "/" }, { label: "LOOKUP" }]} />
       <PageHeader
         code="SEC 07 / IPA LOOKUP"
@@ -25,7 +26,8 @@ export default function LookupPage() {
         検索結果の表記は辞書データ(ipa-dict)の流儀に従うため、本サイトの解説ページと細部が異なることがある(r
         を ɹ と書く、長音 ː を略す等)。音そのものは同じ。
       </p>
-      <p className="mt-auto pt-6 font-mono text-[10px] tracking-[.12em] text-ink-faint">
+      <FootNav items={[{ label: "HOME", href: "/" }]} />
+      <p className="font-mono text-[10px] tracking-[.12em] text-ink-faint">
         DATA:{" "}
         <a
           href="https://github.com/open-dict-data/ipa-dict"

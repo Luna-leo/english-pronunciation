@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PhonemeDetail } from "@/components/phoneme/PhonemeDetail";
 import { Crumbs } from "@/components/ui/Crumbs";
+import { FootNav } from "@/components/ui/FootNav";
 import { CONSONANTS } from "@/lib/data/consonants";
 import { getConsonant } from "@/lib/data/phonemes";
 
@@ -31,7 +32,7 @@ export default async function ConsonantPage({
   const { id } = await params;
   const c = getConsonant(id);
   return (
-    <main className="flex flex-1 flex-col gap-6 py-4">
+    <main className="flex flex-1 flex-col gap-6 pb-4 pt-2">
       <Crumbs
         items={[
           { label: "HOME", href: "/" },
@@ -40,6 +41,12 @@ export default async function ConsonantPage({
         ]}
       />
       <PhonemeDetail phoneme={c} />
+      <FootNav
+        items={[
+          { label: "CONSONANTS", href: "/consonants" },
+          { label: "HOME", href: "/" },
+        ]}
+      />
     </main>
   );
 }

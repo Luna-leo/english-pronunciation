@@ -107,7 +107,7 @@ ENG-APPS Portal デザイン定義書の本アプリ向け適用版。
 ```
 body（bg-grid-paper: 方眼・100dvh・flex中央・padding clamp(10px,2.2vh,26px)）
 └─ .sheet（図枠: 二重枠+トンボ・幅 var(--frame)・内部は無地 --paper・flex column）
-   ├─ header.sheet-head … .wordmark（等幅 --h1・字間.14em）+ .subtitle（字間.32em）+ .ruler
+   ├─ header.sheet-head … .wordmark（等幅 --h1・字間.14em。中身は `Link href="/"` = ホームへの動線。hover/focus は朱の細下線のみ）+ .subtitle（字間.32em）+ .ruler
    └─ .sheet-body       … flex:1・min-height:0・overflow-y:auto — ページ内容はここでスクロール
 ```
 
@@ -124,6 +124,7 @@ body（bg-grid-paper: 方眼・100dvh・flex中央・padding clamp(10px,2.2vh,26
 - トンボ: `.sheet::before/::after`、16×16px・朱2px、枠の**内側9px**（`.sheet` の `overflow:hidden` と両立）
 - ルーラー: 高さ11px・10px間隔の1px目盛（高さ7px・下端基準）+ 1px下罫・`opacity:.8`
 - 図枠の内部は無地の `--paper`（方眼は枠の外周にのみ見える — ポータル同様）
+- ヘッダー下の余白: `.sheet-head { padding-bottom: clamp(6px,1vh,12px) }`（旧 `var(--pad)`。ルーラーとコンテンツが空きすぎないよう詰めた）
 
 ### 原典からの意図的な逸脱
 
@@ -132,9 +133,11 @@ body（bg-grid-paper: 方眼・100dvh・flex中央・padding clamp(10px,2.2vh,26
 
 ### ページ作法
 
-- 各ページはルートに自前の `<main className="flex-1 …">` を置く（main ランドマークはページが所有。ワードマークは `<p>` なので h1 もページ用）
+- 各ページはルートに自前の `<main>` を置く（標準は `className="flex flex-1 flex-col gap-6 pb-4 pt-2"`。main ランドマークはページが所有。ワードマークは `<p>` 内のホームリンクで見出しではないため、h1 もページ用）。上パディングは `pt-2`(8px) と控えめ＝ヘッダー直下を詰めるため上下非対称（旧 `py-4`）
 - `min-h-screen` / `h-screen` は**使わない**（内部スクロールと競合する）
 - シェルのワードマークと重複する見出しを置かない
+- サブページの `<main>` 先頭は `Crumbs`（`components/ui/Crumbs.tsx`）。`sticky top-0` で `.sheet-body` のスクロール時も上部に残り、`bg-paper` の帯 + 下辺の細罫 `border-ink-faint` でコンテンツとの境界を示す。リンクは `text-ink-soft` + 下線・現在地は下線なし、hover で朱
+- Home 以外のページは `<main>` 末尾に `FootNav`（`components/ui/FootNav.tsx`）を置く — 索引ページは `← HOME`、詳細ページは `← セクション` + `← HOME`。`mt-auto` で短いページではシート下端に付く
 - `body` への背景指定にショートハンド `background:` を使わない（`bg-grid-paper` の background-image が無効化される）。`background-color` を使う
 - 枠の外へはみ出す装飾（検認スタンプ等）を将来足す場合は `.sheet` の `overflow:hidden` による見切れに注意
 

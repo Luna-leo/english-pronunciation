@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BlockRenderer } from "@/components/content/BlockRenderer";
 import { SpeechSupportNote } from "@/components/speech/SpeechSupportNote";
 import { Crumbs } from "@/components/ui/Crumbs";
+import { FootNav } from "@/components/ui/FootNav";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { CONNECTED_TOPICS } from "@/lib/data/connected";
 
@@ -38,7 +39,7 @@ export default async function ConnectedTopicPage({
   const { topic } = await params;
   const t = getTopic(topic);
   return (
-    <main className="flex flex-1 flex-col gap-6 py-4">
+    <main className="flex flex-1 flex-col gap-6 pb-4 pt-2">
       <Crumbs
         items={[
           { label: "HOME", href: "/" },
@@ -49,6 +50,12 @@ export default async function ConnectedTopicPage({
       <PageHeader code={`SEC 05 / ${t.titleEn}`} title={t.title} lede={t.summary} />
       <SpeechSupportNote />
       <BlockRenderer blocks={t.blocks} />
+      <FootNav
+        items={[
+          { label: "CONNECTED", href: "/connected" },
+          { label: "HOME", href: "/" },
+        ]}
+      />
     </main>
   );
 }

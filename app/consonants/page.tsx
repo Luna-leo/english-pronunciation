@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ConsonantTable } from "@/components/diagrams/ConsonantTable";
 import { Crumbs } from "@/components/ui/Crumbs";
+import { FootNav } from "@/components/ui/FootNav";
 import { IPA } from "@/components/ui/IPA";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { CONSONANTS } from "@/lib/data/consonants";
@@ -23,7 +24,7 @@ const GROUPS: readonly { key: Manner; label: string }[] = [
 
 export default function ConsonantsPage() {
   return (
-    <main className="flex flex-1 flex-col gap-6 py-4">
+    <main className="flex flex-1 flex-col gap-6 pb-4 pt-2">
       <Crumbs items={[{ label: "HOME", href: "/" }, { label: "CONSONANTS" }]} />
       <PageHeader
         code="SEC 03 / CONSONANTS"
@@ -70,6 +71,7 @@ export default function ConsonantsPage() {
           </div>
         ))}
       </section>
+      <FootNav items={[{ label: "HOME", href: "/" }]} />
     </main>
   );
 }

@@ -128,7 +128,7 @@ body {
 
   .sheet-head {
     flex: none;
-    padding-bottom: var(--pad);
+    padding-bottom: clamp(6px, 1vh, 12px); /* was var(--pad) — ヘッダーとコンテンツの間隔を詰める */
   }
   .wordmark {
     font-family: var(--mono);
@@ -137,6 +137,18 @@ body {
     letter-spacing: 0.14em;
     line-height: 1;
     color: var(--ink);
+  }
+  /* ワードマーク = ホームへのリンク。朱は細い下線のみ(面で使わない) */
+  .wordmark a:hover,
+  .wordmark a:focus-visible {
+    text-decoration-line: underline;
+    text-decoration-color: var(--vermilion);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.18em;
+  }
+  .wordmark a:focus-visible {
+    outline: 2px solid var(--vermilion);
+    outline-offset: 4px;
   }
   .subtitle {
     font-size: clamp(10px, 1.35vh, 13px);

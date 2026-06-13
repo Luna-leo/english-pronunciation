@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PhonemeDetail } from "@/components/phoneme/PhonemeDetail";
 import { Crumbs } from "@/components/ui/Crumbs";
+import { FootNav } from "@/components/ui/FootNav";
 import { getVowel } from "@/lib/data/phonemes";
 import { VOWELS } from "@/lib/data/vowels";
 
@@ -31,7 +32,7 @@ export default async function VowelPage({
   const { id } = await params;
   const v = getVowel(id);
   return (
-    <main className="flex flex-1 flex-col gap-6 py-4">
+    <main className="flex flex-1 flex-col gap-6 pb-4 pt-2">
       <Crumbs
         items={[
           { label: "HOME", href: "/" },
@@ -40,6 +41,12 @@ export default async function VowelPage({
         ]}
       />
       <PhonemeDetail phoneme={v} />
+      <FootNav
+        items={[
+          { label: "VOWELS", href: "/vowels" },
+          { label: "HOME", href: "/" },
+        ]}
+      />
     </main>
   );
 }

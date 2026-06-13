@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ConsonantTable } from "@/components/diagrams/ConsonantTable";
 import { VowelChart } from "@/components/diagrams/VowelChart";
 import { Crumbs } from "@/components/ui/Crumbs";
+import { FootNav } from "@/components/ui/FootNav";
 import { IPA } from "@/components/ui/IPA";
 import { Note } from "@/components/ui/Note";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -18,7 +19,7 @@ function En({ children }: { children: string }) {
 
 export default function BasicsPage() {
   return (
-    <main className="flex flex-1 flex-col gap-6 py-4">
+    <main className="flex flex-1 flex-col gap-6 pb-4 pt-2">
       <Crumbs items={[{ label: "HOME", href: "/" }, { label: "BASICS" }]} />
       <PageHeader
         code="SEC 01 / IPA BASICS"
@@ -178,6 +179,7 @@ export default function BasicsPage() {
           SEC 03 / CONSONANTS →
         </Link>
       </section>
+      <FootNav items={[{ label: "HOME", href: "/" }]} />
     </main>
   );
 }

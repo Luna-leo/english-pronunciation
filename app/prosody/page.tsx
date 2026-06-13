@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Crumbs } from "@/components/ui/Crumbs";
+import { FootNav } from "@/components/ui/FootNav";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { PROSODY_TOPICS } from "@/lib/data/prosody";
 
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ProsodyIndexPage() {
   return (
-    <main className="flex flex-1 flex-col gap-6 py-4">
+    <main className="flex flex-1 flex-col gap-6 pb-4 pt-2">
       <Crumbs items={[{ label: "HOME", href: "/" }, { label: "PROSODY" }]} />
       <PageHeader
         code="SEC 04 / PROSODY"
@@ -34,6 +35,7 @@ export default function ProsodyIndexPage() {
           </li>
         ))}
       </ol>
+      <FootNav items={[{ label: "HOME", href: "/" }]} />
     </main>
   );
 }

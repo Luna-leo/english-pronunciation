@@ -55,7 +55,7 @@ const SECTIONS = [
 
 export default function Home() {
   return (
-    <main className="flex flex-1 flex-col gap-6 py-4">
+    <main className="flex flex-1 flex-col gap-6 pb-4 pt-2">
       <PageHeader
         code="INDEX / 学習マップ"
         title="英語発音練習"

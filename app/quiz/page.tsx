@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { QuizApp } from "@/components/quiz/QuizApp";
 import { SpeechSupportNote } from "@/components/speech/SpeechSupportNote";
 import { Crumbs } from "@/components/ui/Crumbs";
+import { FootNav } from "@/components/ui/FootNav";
 import { PageHeader } from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function QuizPage() {
   return (
-    <main className="flex flex-1 flex-col gap-6 py-4">
+    <main className="flex flex-1 flex-col gap-6 pb-4 pt-2">
       <Crumbs items={[{ label: "HOME", href: "/" }, { label: "QUIZ" }]} />
       <PageHeader
         code="SEC 06 / QUIZ"
@@ -21,6 +22,7 @@ export default function QuizPage() {
       />
       <SpeechSupportNote />
       <QuizApp />
+      <FootNav items={[{ label: "HOME", href: "/" }]} />
     </main>
   );
 }
