@@ -62,3 +62,5 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           trigger_phrase: "@claude-implement"
+          # 実装は速度・消費を抑えて Sonnet(4.6)。
+          claude_args: "--model claude-sonnet-4-6"
