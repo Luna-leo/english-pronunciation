@@ -11,7 +11,7 @@ export function Crumbs({ items }: { items: Crumb[] }) {
   return (
     <nav
       aria-label="パンくず"
-      className="sticky top-0 z-10 -my-2 border-b border-ink-faint bg-paper py-2 font-mono text-[11px] tracking-[.12em] text-ink-faint"
+      className="sticky top-[env(safe-area-inset-top)] z-10 -my-2 border-b border-ink-faint bg-paper py-2 font-mono text-[11px] tracking-[.12em] text-ink-faint"
     >
       <ol className="flex flex-wrap items-center gap-1.5">
         {items.map((c, i) => (

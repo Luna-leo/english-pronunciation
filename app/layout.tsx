@@ -8,9 +8,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  // = --paper。iOS/Android のブラウザ上端バー（ノッチ周辺）を無地の用紙色にし、
-  // スクロール中に固定パンくずの上へ中身が透けて見えるのを防ぐ。--paper と同値に保つ。
+  // themeColor = --paper（リテラル hex は :root の --paper と同値に保つ）。
+  // viewportFit: cover で env(safe-area-inset-*) を有効化し、iOS Safari の
+  // 半透明ステータスバー帯を globals.css の固定パネルで無地に塞ぐ（中身の透け防止）。
   themeColor: "#f6f4ee",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

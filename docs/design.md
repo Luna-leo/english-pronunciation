@@ -118,7 +118,7 @@ body（bg-grid-paper: 方眼・100dvh・flex中央・padding clamp(10px,2.2vh,26
 - **既知バグ（要注意）**: 固定解除時は `height` と `max-height` の**両方**を解除する（`height:auto; max-height:none; overflow:visible`）。`max-height` の解除を忘れると、図枠が画面高で閉じ、収まりきらないコンテンツが枠の外へあふれる（ポータルで過去に発生した不具合）
 - `.sheet-body` の `min-height:0` を消すと内部スクロールが効かなくなる（flexの定石）
 - **Safari の sticky 再描画バグ（要注意）**: 固定解除時の `body` に `overflow-x: clip`/`hidden` を**付けない**こと。`body`（sticky な `Crumbs` の祖先）に `overflow-x` を付けると、Safari ではスクロールで通り過ぎたコンテンツが画面最上部（ステータスバー帯〜パンくず上部）に残像として焼き付く（Chrome では出ない／Safari 限定）。横はみ出し対策は `overflow` ではなくワードマーク縮小（下記）で行う
-- スマホは全体スクロールのため `Crumbs` がビューポート上端（＝画面上端）に貼り付く。`app/layout.tsx` の `viewport.themeColor` と `html { background-color }` を `--paper`(`#f6f4ee`) にして、ブラウザ上端バー／オーバースクロール時に見える地を用紙色に揃える（化粧。リテラルの hex は `:root` の `--paper` と同値に保つ）。`viewport-fit:cover` は使わない（既定でセーフエリア内に収まるため不要）
+- **iOS Safari のステータスバー透け（要注意）**: スマホは全体スクロールのため、半透明のステータスバー裏に本文がスクロールして透ける（`theme-color` だけでは下URLバー型 Safari の上端を塞げない）。対処は iOS 標準: `app/layout.tsx` の `viewport` に `viewportFit:"cover"` を付けて `env(safe-area-inset-*)` を有効化 → `@media(max-width:1020px)` で (1) `body` の上下 `padding` に `env(safe-area-inset-top/bottom)` を足して内容をセーフエリア内へ、(2) `body::before` を `position:fixed; height:env(safe-area-inset-top); background:--paper; z-index:50` で上端帯を無地で物理的に塞ぐ、(3) `Crumbs` の sticky を `top:env(safe-area-inset-top)`（＝固定パネル直下）にしてパネル裏に隠れないようにする。`themeColor`/`html{background-color}` の `--paper`(`#f6f4ee`) は化粧として併用（リテラル hex は `:root` の `--paper` と同値に保つ）
 - **ワードマークの横はみ出し（要注意）**: `.wordmark` は等幅 `--h1`(≥26px)+字間.14em のため、`@media (max-width:640px)` で `font-size: clamp(14px,5.2vw,26px)` / `letter-spacing:.10em` に縮小して1行に収める（左右余白は保持・全幅化はしない）。`ENGLISH&nbsp;PRONUNCIATION` の `&nbsp;` で折り返さない前提なので、縮小を外すとスマホで枠外へあふれる
 
 ### 装飾の実装値（原典 index.html 準拠）
