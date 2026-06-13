@@ -55,6 +55,11 @@
   --radius-*: initial; /* 禁則: 角丸禁止 — rounded-sm/md/lg... を無効化 */
 }
 
+html {
+  /* iOSのオーバースクロール/ノッチ周辺を方眼なしの無地用紙色に（body は方眼を維持） */
+  background-color: var(--paper);
+}
+
 body {
   /* ショートハンド background: は使わない — bg-grid-paper の background-image が無効化される */
   background-color: var(--paper);

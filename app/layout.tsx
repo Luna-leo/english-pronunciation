@@ -1,10 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "English Pronunciation",
   description: "English pronunciation practice app",
+};
+
+export const viewport: Viewport = {
+  // = --paper。iOS/Android のブラウザ上端バー（ノッチ周辺）を無地の用紙色にし、
+  // スクロール中に固定パンくずの上へ中身が透けて見えるのを防ぐ。--paper と同値に保つ。
+  themeColor: "#f6f4ee",
 };
 
 export default function RootLayout({
